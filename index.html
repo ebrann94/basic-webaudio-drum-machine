@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drum Machine</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <div class="sound-controls" id="kick">
+        <label for="kick-volume">Volume</label>
+        <input type="range" id="kick-volume" min="0" max="2" value="1" step="0.01" />
+        <label for="kick-pitch">Pitch</label>
+        <input type="range" id="kick-pitch" min="0" max="2" value="1" step="0.01" />
+        <button role="switch" aira-checked="false" id="kick-btn">
+            Play/Pause
+        </button>
+    </div>
+    <div class="sound-controls" id="snare">
+        <label for="snare-volume">Volume</label>
+        <input type="range" id="snare-volume" min="0" max="2" value="1" step="0.01" />
+        <label for="snare-pitch">Pitch</label>
+        <input type="range" id="snare-pitch" min="0" max="2" value="1" step="0.01" />
+        <button role="switch" aira-checked="false" id="snare-btn">
+            Play/Pause
+        </button>
+    </div>
+
+    <script src="script.js" type="text/javascript"></script>
+</body>
+</html>

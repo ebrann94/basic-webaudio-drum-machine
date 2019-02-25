@@ -1,0 +1,8 @@
+body {
+    font-family: 'Helvetica', sans-serif;
+}
+
+input[type="range"] {
+    /* width: 50px;
+    height: 200px; */
+}
