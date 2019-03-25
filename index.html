@@ -12,21 +12,45 @@
     
 
     <div class="sound-controls" id="kick">
-        <label for="kick-volume">Volume</label>
-        <input type="range" id="kick-volume" min="0" max="2" value="1" step="0.01" />
-        <label for="kick-pitch">Pitch</label>
-        <input type="range" id="kick-pitch" min="0" max="2" value="1" step="0.01" />
+        <h3 class="sound-name">Kick</h3>
+        <div class="slider-wrapper">
+            <label for="kick-volume">Volume</label>
+            <input type="range" id="kick-volume" min="0" max="2" value="1" step="0.01" />
+        </div>
+        <div class="slider-wrapper">
+            <label for="kick-pitch">Pitch</label>
+            <input type="range" id="kick-pitch" min="0" max="2" value="1" step="0.01" />
+        </div>
         <button role="switch" aira-checked="false" id="kick-btn">
-            Play/Pause
+            Play
         </button>
     </div>
     <div class="sound-controls" id="snare">
-        <label for="snare-volume">Volume</label>
-        <input type="range" id="snare-volume" min="0" max="2" value="1" step="0.01" />
-        <label for="snare-pitch">Pitch</label>
-        <input type="range" id="snare-pitch" min="0" max="2" value="1" step="0.01" />
+        <h3 class="sound-name">Snare</h3>
+        <div class="slider-wrapper">
+            <label for="snare-volume">Volume</label>
+            <input type="range" id="snare-volume" min="0" max="2" value="1" step="0.01" />
+        </div>
+        <div class="slider-wrapper">
+            <label for="snare-pitch">Pitch</label>
+            <input type="range" id="snare-pitch" min="0" max="2" value="1" step="0.01" />
+        </div>
         <button role="switch" aira-checked="false" id="snare-btn">
-            Play/Pause
+            Play
+        </button>
+    </div>
+    <div class="sound-controls" id="hihat">
+        <h3 class="sound-name">Hihat</h3>
+        <div class="slider-wrapper">
+            <label for="hihat-volume">Volume</label>
+            <input type="range" id="hihat-volume" min="0" max="2" value="1" step="0.01" />
+        </div>
+        <div class="slider-wrapper">
+            <label for="hihat-pitch">Pitch</label>
+            <input type="range" id="hihat-pitch" min="0" max="2" value="1" step="0.01" />
+        </div>
+        <button role="switch" aira-checked="false" id="hihat-btn">
+            Play
         </button>
     </div>
 

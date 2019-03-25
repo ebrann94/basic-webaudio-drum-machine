@@ -1,57 +1,7 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-
 const audioContext = new AudioContext();
 
-// Get audio element form DOM
-// const audioElement = document.querySelector('audio');
-
-// const track = audioContext.createMediaElementSource(audioElement);
-
-// class DrumTrack {
-//     constructor(audioElement, playButton, volumeControl) {
-//         this.audioElement = audioElement;
-//         this.track = audioContext.createMediaElementSource(this.audioElement);
-
-//         this.playButton = playButton; // DOM Element
-
-//         this.gainNode = audioContext.createGain();
-//         this.gainControl = volumeControl // DOM element;
-
-//         this.track.connect(this.gainNode);
-//         this.gainNode.connect(audioContext.destination);
-        
-//         this.gainControl.addEventListener('input', (e) => {
-//             this.setGain(e.target.value);
-//         });
-
-//         this.playButton.addEventListener('mousedown', (e) => {
-//             if (audioContext.state === 'suspended') {
-//                 audioContext.resume();
-//             }
-//             this.audioElement.play();
-//             console.log('Playing Element');
-//         });
-
-//         //this.setGain = this.setGain.bind(this);
-//     }
-
-//     setGain(newGain) {
-//         this.gainNode.gain.value = newGain;
-//         console.log(this.gainNode.gain.value);
-//     }
-// }
-
-// const kickDrum = new DrumTrack(
-//     document.querySelector('#kick'), 
-//     document.querySelector('#kick-btn'),
-//     document.querySelector('#kick-volume')
-// );
-
-// setTimeout(() => {
-//     console.log(test);
-// }, 1000);
-
-class DrumTrackBuffer {
+class Drum {
     constructor(audioFilename, playButton, gainControl, pitchControl) {
         this.audioBuffer;
         this.playBackSpeed = 1.0;
@@ -80,7 +30,23 @@ class DrumTrackBuffer {
             gainControl,
             pitchControl
         }
+        this.setupEventListeners();
         
+    }
+
+    setGain(newGain) {
+        this.gainNode.gain.value = newGain;
+    }
+
+    play() {
+        const source = audioContext.createBufferSource();
+        source.buffer = this.audioBuffer;
+        source.playbackRate.value = this.playBackSpeed;
+        source.connect(this.gainNode);
+        source.start(0);
+    }
+
+    setupEventListeners() {
         this.UIElements.gainControl.addEventListener('input', (e) => {
             this.setGain(e.target.value);
         });
@@ -89,33 +55,47 @@ class DrumTrackBuffer {
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
             }
-            const source = audioContext.createBufferSource();
-            source.buffer = this.audioBuffer;
-            source.playbackRate.value = this.playBackSpeed;
-            source.connect(this.gainNode);
-            source.start(0);
+            this.play();
         });
 
         this.UIElements.pitchControl.addEventListener('input', (e) => {
             this.playBackSpeed = Number(e.target.value);
         });
     }
-
-    setGain(newGain) {
-        this.gainNode.gain.value = newGain;
-    }
 }
 
-const kickDrum = new DrumTrackBuffer(
+const kickDrum = new Drum(
     'sounds/909-kick.wav', 
     document.querySelector('#kick-btn'),
     document.querySelector('#kick-volume'),
     document.querySelector('#kick-pitch')
 );
 
-const snareDrum = new DrumTrackBuffer(
+const snareDrum = new Drum(
     'sounds/909-snare.wav', 
     document.querySelector('#snare-btn'),
     document.querySelector('#snare-volume'),
     document.querySelector('#snare-pitch')
 );
+
+const hihat = new Drum(
+    'sounds/909-hihat.wav', 
+    document.querySelector('#hihat-btn'),
+    document.querySelector('#hihat-volume'),
+    document.querySelector('#hihat-pitch')
+);
+
+
+window.addEventListener('keydown', (e) => {
+    switch (e.key ) {
+        case 'a':
+            kickDrum.play();
+            break;
+        case 's':
+            snareDrum.play();
+            break;
+        case 'd':
+            hihat.play();
+            break;
+    }
+});
